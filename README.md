@@ -1,4 +1,4 @@
-# Glued-Skeleton
+# SlimWP
 
 A full blown modular webapp skeleton built around
 
@@ -21,13 +21,13 @@ This skeleton application was built for [Composer](https://getcomposer.org/).
 
 ### From github (on apache or nginx)
 
-* Run `git clone https://github.com/vaizard/glued-skeleton` in `/var/www/html`
-* Point your virtual host document root to `/var/www/html/glued-skeleton/public`
+* Run `git clone https://github.com/nalyk/slimwp` in `/var/www/html`
+* Point your virtual host document root to `/var/www/html/slimwp/public`
 * Run `composer update`
 
 ### With composer
 
-* Run `composer create-project vaizard/glued-skeleton [my-app-name]`
+* Run `composer create-project nalyk/slimwp [my-app-name]`
 * Point your virtual host document root to your new application's `public/` directory.
 * Ensure `public/cache/` and `private/cache/*` is web writable.
 
@@ -38,7 +38,7 @@ This skeleton application was built for [Composer](https://getcomposer.org/).
 
 ### Core
 
-The glue that keeps stuff together in Glued. To all microservices, core provides:
+The glue that keeps stuff together in SlimWP. To all microservices, core provides:
 
 - user management 
   - authentication (sessions, jwt)

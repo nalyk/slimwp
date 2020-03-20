@@ -1,15 +1,11 @@
 {
-  "name": "vaizard/glued-skeleton",
+  "name": "nalyk/slimwp",
   "description": "Web application skeleton that uses the Slim4 Framework, PHP-DI, Nyholm PSR7 and Twig.",
   "license": "MIT",
   "authors": [
     {
-      "name": "Adrian Suter",
-      "email": "adrian@suter-wirz.ch"
-    },
-    {
-      "name": "Pavel Stratil",
-      "email": "pavel@vaizard.org"
+      "name": "Nalyk Calmis",
+      "email": "nalyk@studiotechno.md"
     }   
   ],
   "autoload": {
