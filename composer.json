@@ -66,8 +66,7 @@
       "chmod 777 private/data",
       "chmod 777 private/locale",
       "chmod 777 private/locale",
-      "Glued\\Core\\Install\\ComposerHooks::configTool",
-      "php vendor/bin/phinx migrate -e production"
+      "Glued\\Core\\Install\\ComposerHooks::configTool"
     ],
     "post-install-cmd": [
       "mkdir -p public/assets/js",
@@ -80,9 +79,7 @@
       "chmod 777 private/data",
       "chmod 777 private/locale",
       "chmod 777 private/locale",
-      "Glued\\Core\\Install\\ComposerHooks::postInstall",
-      "./install.sh",
-      "php vendor/bin/phinx migrate -e production"
+      "Glued\\Core\\Install\\ComposerHooks::postInstall"
     ]
   },
   "extra": {

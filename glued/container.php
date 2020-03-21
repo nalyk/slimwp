@@ -1,7 +1,7 @@
 <?php
 
 use DI\Container;
-use Glued\Core\Classes\Auth\Auth;
+// use Glued\Core\Classes\Auth\Auth;
 use Glued\Core\Middleware\TranslatorMiddleware;
 use Glued\Stor\Classes\Stor as StorMainClass;
 use Monolog\Handler\StreamHandler;
@@ -37,7 +37,7 @@ $container->set(LoggerInterface::class, function (Container $c) {
     return $logger;
 });
 
-
+/*
 $container->set('mysqli', function (Container $c) {
     $db = $c->get('settings')['db'];
     $mysqli = new mysqli($db['host'], $db['username'], $db['password'], $db['database']);
@@ -52,7 +52,7 @@ $container->set('db', function (Container $c) {
     $db = new \MysqliDb($mysqli);
     return $db;
 });
-
+*/
 
 $container->set('antixss', function () {
     return new AntiXSS();
@@ -108,10 +108,11 @@ $container->set('validator', function (Container $c) {
    return new Glued\Core\Classes\Validation\Validator;
 });
 
-
+/*
 $container->set('auth', function (Container $c) {
     return new Auth($c->get('db'), $c->get('settings'));
 });
+*/
 
 // stor trida
 $container->set('stor', function (Container $c) {
