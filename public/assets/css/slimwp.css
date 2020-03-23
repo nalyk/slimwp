@@ -1,0 +1,11 @@
+/* slimwp's css override */
+
+label {
+    margin-bottom: 0.2rem;
+}
+
+/* Show it is fixed to the top */
+body {
+  min-height: 75rem;
+  padding-top: 4.5rem;
+}

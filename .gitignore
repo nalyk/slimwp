@@ -3,7 +3,7 @@
 .tmp
 composer.lock
 coverage
-glued/settings.php
+slimwp/settings.php
 public/assets/node_modules/**
 public/assets/cache/**
 phinx.yml

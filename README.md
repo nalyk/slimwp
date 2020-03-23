@@ -60,7 +60,7 @@ The glue that keeps stuff together in SlimWP. To all microservices, core provide
 
 **Caching**
 
-Glued's default cache headers (see `/public/.htaccess`) allow short term assets caching. Please understand that performance gains based on caching always comes at the cost of security. Sensitive data, i.e. pdf files, or private photos will get cached (depending on configuration locally by the user's browser or on public proxies). While html caching is disabled out of the box, if you want full security, completely disable caching (no-cache on everything). 
+Slimwp's default cache headers (see `/public/.htaccess`) allow short term assets caching. Please understand that performance gains based on caching always comes at the cost of security. Sensitive data, i.e. pdf files, or private photos will get cached (depending on configuration locally by the user's browser or on public proxies). While html caching is disabled out of the box, if you want full security, completely disable caching (no-cache on everything). 
 For the above mentioned security considerations, when sessions are on, php sets `Pragma: no-cache` by default on the generated output. Don't change this unless you know what you are doing.
 
 ### Spider
@@ -117,7 +117,7 @@ NOTE: Browsers support only GET/POST methods, but the backend api uses the the w
 
 **Concepts**
 
- Glued relies heavily on features available in MySQL 8. Adding Support for any other database software (or older MySQL versions) is likely to be quite painful. The main concepts of SQL development in glued are the following:
+ Slimwp relies heavily on features available in MySQL 8. Adding Support for any other database software (or older MySQL versions) is likely to be quite painful. The main concepts of SQL development in slimwp are the following:
 
  - combine traditional relational SQL with JSON documents, take advantage of virtual columns (generated from the JSON docs)
  - use the utf8mb4 encoding by default
@@ -126,7 +126,7 @@ NOTE: Browsers support only GET/POST methods, but the backend api uses the the w
 
 **Migrations**
 
-Glued comes with phinx-migrations, which generates automatically database migration files. What this means is, that if you add a table, drop a column or do anything else to the structure of your database, a migration file will be generated to just automatically upgrade everyone's databases as well. Just run
+Slimwp comes with phinx-migrations, which generates automatically database migration files. What this means is, that if you add a table, drop a column or do anything else to the structure of your database, a migration file will be generated to just automatically upgrade everyone's databases as well. Just run
 
 ```
 ./vendor/bin/phinx-migrations generate -e production --name initial
@@ -155,20 +155,20 @@ echo __('Hello world'); In twig templates use the preconfigured odan/twig-transl
 * Open tab: Sources keywords, Add keyword: \__, Click 'Ok' to store the settings
 * Click button 'Update form source' to extract the template strings.
 * Translate the text and save the file.
-* Run `php glued/Core/Bin/parse-twig.php`
+* Run `php slimwp/Core/Bin/parse-twig.php`
 
 
 **Updating the translations code**
 
 Integrating odan/twig-translation was not trivial. This section intends to document the setup to save feature developers some frustration when code updates are needed. Translations code appears in:
 
-* glued/Core/Bin/parse-twig.php
-* glued/Core/Middleware/LocaleSessionMiddleware.php
-* glued/Core/Middleware/TranslatorMiddleware.php
-* glued/Core/middleware.php
-* glued/Core/settings.php
-* glued/Core/container.php
-* glued/Core/bin/Includes/translation.php (included via a composer.json entry)
+* slimwp/Core/Bin/parse-twig.php
+* slimwp/Core/Middleware/LocaleSessionMiddleware.php
+* slimwp/Core/Middleware/TranslatorMiddleware.php
+* slimwp/Core/middleware.php
+* slimwp/Core/settings.php
+* slimwp/Core/container.php
+* slimwp/Core/bin/Includes/translation.php (included via a composer.json entry)
 
 Credit for the initial translation implementation goes to https://github.com/odan/slim4-skeleton/commit/ba57560e33e379fd3ce6ef7ec09b68b029fb64ad
 
@@ -184,10 +184,10 @@ Used technology
 Practical usage
 
 - Distinguish between infrastructure specific exceptions (e.g. HttpNotFoundException, HttpBadRequestException) and domain specific exceptions (e.g. DomainException, UnexpectedValueException, ValidationException, etc…).
-- Use domain specific exception in classes (where glued handles the data internally only), rethrow the domain specific exceptions as infrastructure specific exceptions in controllers (set the return code depending on context, emit a friendlier/more readable error message). See how `Glued\Core\Controllers\AccountsController::read()` rethrows exceptions comming from `Glued\Core\Classes\Auth\Auth::user_read()`.
+- Use domain specific exception in classes (where slimwp handles the data internally only), rethrow the domain specific exceptions as infrastructure specific exceptions in controllers (set the return code depending on context, emit a friendlier/more readable error message). See how `Slimwp\Core\Controllers\AccountsController::read()` rethrows exceptions comming from `Slimwp\Core\Classes\Auth\Auth::user_read()`.
 - Using infrastructure specific exceptions in classes is unwanted, since throwing them requires the Request passed as a parameter (i.e. `throw new HttpNotFoundException($this->request, 'User not found');`).
-- Perform validation in classes. Optionally you can also validate in controllers, if it's usefull (i.e. see `Glued\Core\Controllers\AccountsController::signup_post()` where the `$this->validator` uses the container-residing `Core\Classes\Validation` helper that re-fills the signup form and explains which data is invalid)
-- Don't forget to do i18n via. the `__()` function available both in glued's php sources and in its twig templates on error messages.
+- Perform validation in classes. Optionally you can also validate in controllers, if it's usefull (i.e. see `Slimwp\Core\Controllers\AccountsController::signup_post()` where the `$this->validator` uses the container-residing `Core\Classes\Validation` helper that re-fills the signup form and explains which data is invalid)
+- Don't forget to do i18n via. the `__()` function available both in slimwp's php sources and in its twig templates on error messages.
 
 Notes
 
@@ -200,7 +200,7 @@ Remember that `var_dump($some_variable); die();` is your best friend. Also use t
 
 ### Developer tutorials
 
-Glued comes with two modules aimed at getting you up to speed quickly.
+Slimwp comes with two modules aimed at getting you up to speed quickly.
 The `tutorial` microservice serves as an introduction to the Slim4 framework.
 
 The `skeleton` module is a copy&paste&edit skeleton, which includes everything needed to write a proper microservice:

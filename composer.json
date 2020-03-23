@@ -10,10 +10,10 @@
   ],
   "autoload": {
     "psr-4": {
-      "Glued\\": "glued/"
+      "Slimwp\\": "slimwp/"
     },
     "files": [
-      "glued/Core/Includes/translation.php"
+      "slimwp/Core/Includes/translation.php"
     ]
   },
   "require": {
@@ -51,7 +51,10 @@
     "middlewares/csp": "^3.0",
     "zeuxisoo/slim-whoops": "^0.7.2",
     "sabre/vobject": "^4.0",
-    "voku/anti-xss": "^4.1"
+    "voku/anti-xss": "^4.1",
+    "nategood/httpful": "^0.3.2",
+    "twig/extensions": "^1.5",
+    "imangazaliev/didom": "^1.15"
   },
   "scripts": {
     "start": "php -S localhost:8080 -t public",
@@ -66,7 +69,7 @@
       "chmod 777 private/data",
       "chmod 777 private/locale",
       "chmod 777 private/locale",
-      "Glued\\Core\\Install\\ComposerHooks::configTool"
+      "Slimwp\\Core\\Install\\ComposerHooks::configTool"
     ],
     "post-install-cmd": [
       "mkdir -p public/assets/js",
@@ -79,7 +82,7 @@
       "chmod 777 private/data",
       "chmod 777 private/locale",
       "chmod 777 private/locale",
-      "Glued\\Core\\Install\\ComposerHooks::postInstall"
+      "Slimwp\\Core\\Install\\ComposerHooks::postInstall"
     ]
   },
   "extra": {

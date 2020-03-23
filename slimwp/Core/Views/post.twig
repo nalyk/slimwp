@@ -1,0 +1,90 @@
+{% extends '/Core/Views/templates/default.twig' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            {% for article in lastposts %}
+            <div class="card news mb-4 border-0">
+              <div class="row no-gutters">
+                <div class="col-md-2">
+                  <img src="{{ article._embedded["wp:featuredmedia"][0].media_details.sizes.loop.source_url }}" class="card-img" alt="...">
+                </div>
+                <div class="col-md-10">
+                  <div class="card-body pt-0">
+                    <a class="modalnews" data-slug="{{ article.slug }}" href="{{ url_for('core.get.post', { 'slug': article.slug }) }}"><h5 class="card-title">{{ article.title.rendered|raw }}</h5></a>
+                    {#<p class="card-text">{{ article.excerpt.rendered|striptags|truncate(100) }}</p>#}
+                    <p class="card-text"><small class="text-muted">{{ article.date|localizeddate('long', 'short', 'ro') }}</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}            
+        </div>
+        <div class="col-md-4">
+            sidebar
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="articleModal" tabindex="-1" role="dialog" aria-labelledby="articleModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="articleModalTitle">{{ article.title.rendered|raw|e }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{ article.content.rendered|raw }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block js_prebody %}
+    <script type="text/javascript" nonce="{{csp_nonce.script_src}}">
+    jQuery( document ).ready(function() {
+        console.log( "document loaded" );
+        $('#articleModal').modal('show');
+
+        $('#articleModal').on('hidden.bs.modal', function (e) {
+        });
+
+        $( "a.modalnews" ).click(function( event ) {
+            event.preventDefault();
+            var articleSlug = $(this).attr("data-slug");
+            var articleAjaxUrl = "http://127.0.0.1/ajax/post/"+articleSlug;
+            
+            $.ajax({
+               url: articleAjaxUrl,
+               dataType: 'json',
+               success: function(res) {
+                   var data = res;
+
+                   var articleTitle = res.title.rendered;
+                   var articleBody = res.content.rendered;
+
+                   // update modal content
+                   $('#articleModal .modal-title').text(articleTitle);
+                   $('#articleModal .modal-body').html(articleBody);
+                   
+                   // show modal
+                   $('#articleModal').modal('show');
+               },
+               error:function(request, status, error) {
+                   console.log("ajax call went wrong:" + request.responseText);
+               }
+            });
+        });
+
+    });
+    </script>   
+{% endblock %}

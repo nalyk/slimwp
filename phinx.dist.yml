@@ -1,6 +1,6 @@
 paths:
-    migrations: '%%PHINX_CONFIG_DIR%%/glued/Core/Install/Migrations'
-    seeds: '%%PHINX_CONFIG_DIR%%/glued/Core/Install/Seeds'
+    migrations: '%%PHINX_CONFIG_DIR%%/slimwp/Core/Install/Migrations'
+    seeds: '%%PHINX_CONFIG_DIR%%/slimwp/Core/Install/Seeds'
 
 foreign_keys: true
 
