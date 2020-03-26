@@ -1,5 +1,13 @@
 {% extends '/Core/Views/templates/default.twig' %}
 
+{% block css_inline_header %}
+<style type="text/css">
+  .modal-body img {
+    max-width: 766px;
+  }
+</style>  
+{% endblock %}
+
 {% block content %}
 <div class="container">
     <div class="row">
@@ -60,7 +68,7 @@
         $( "a.modalnews" ).click(function( event ) {
             event.preventDefault();
             var articleSlug = $(this).attr("data-slug");
-            var articleAjaxUrl = "http://127.0.0.1/ajax/post/"+articleSlug;
+            var articleAjaxUrl = "{{ base_path() }}/ajax/post/"+articleSlug; 
             
             $.ajax({
                url: articleAjaxUrl,
@@ -81,6 +89,11 @@
                error:function(request, status, error) {
                    console.log("ajax call went wrong:" + request.responseText);
                }
+            });
+
+            $('#articleModal').on('shown.bs.modal', function (e) {
+              // do something...
+              $("#articleModal .modal-body img").addClass("img-fluid");
             });
         });
 

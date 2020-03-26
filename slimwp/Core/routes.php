@@ -17,8 +17,11 @@ use Slim\Routing\RouteCollectorProxy;
 // Define the app routes.
 $app->get('/', Slimwp::class . ':index')->setName('core.get.home');
 $app->get ('/post/{slug}', Slimwp::class . ':post_get')->setName('core.get.post');
+$app->get ('/data/post/{slug}', Slimwp::class . ':ajax_post_get')->setName('core.ajax.get.post');
 
 $app->get ('/ajax/post/{slug}', Slimwp::class . ':ajax_post_get')->setName('core.ajax.get.post');
+
+$app->get ('/ajax/modal/post/{slug}', Slimwp::class . ':ajax_modal_post_get')->setName('core.ajax.modal.get.post');
 
 $app->get ('/core/signout', AuthController::class . ':signout_get')->setName('core.signout.web');
 

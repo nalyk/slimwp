@@ -54,7 +54,8 @@
     "voku/anti-xss": "^4.1",
     "nategood/httpful": "^0.3.2",
     "twig/extensions": "^1.5",
-    "imangazaliev/didom": "^1.15"
+    "imangazaliev/didom": "^1.15",
+    "phpfastcache/phpfastcache": "^8.0"
   },
   "scripts": {
     "start": "php -S localhost:8080 -t public",

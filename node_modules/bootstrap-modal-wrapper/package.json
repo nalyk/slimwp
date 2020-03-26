@@ -1,0 +1,36 @@
+{
+    "name": "bootstrap-modal-wrapper",
+    "version": "2.0.1",
+    "description": "Bootstrap modal wrapper plugin creates dynamic and nested stacked dialog instances",
+    "keywords": [
+        "bootstrap",
+        "modal",
+        "dialog",
+        "bootstrap modal",
+        "bootstrap dialog"
+    ],
+    "author": "javatmp",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/JavaTMP/bootstrap-modal-wrapper/issues"
+    },
+    "homepage": "https://github.com/JavaTMP/bootstrap-modal-wrapper",
+    "devDependencies": {
+        "del": "^5.0.0",
+        "gulp": "^4.0.2",
+        "gulp-eslint": "^6.0.0",
+        "gulp-header": "^2.0.7",
+        "gulp-rename": "^1.4.0",
+        "gulp-uglify": "^3.0.1"
+    },
+    "dependencies": {
+        "bootstrap": "^4.2.1",
+        "jquery": "^3.4.1",
+        "popper.js": "^1.14.6"
+    },
+    "scripts": {},
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/JavaTMP/bootstrap-modal-wrapper.git"
+    }
+}

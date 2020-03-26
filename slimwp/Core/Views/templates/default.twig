@@ -16,6 +16,9 @@
     '@public/assets/css/slimwp.css',
     ], name: 'app.css'}) }}
 
+    {% block css_inline_header %}
+    {% endblock %}
+
   </head>
 
   <body>
@@ -52,6 +55,7 @@
     '@public/assets/node_modules/jquery/dist/jquery.min.js',
     '@public/assets/node_modules/popper.js/dist/umd/popper.min.js',
     '@public/assets/node_modules/bootstrap/dist/js/bootstrap.min.js',
+    '@public/assets/node_modules/bootstrap-modal-wrapper/dist/bootstrap-modal-wrapper-factory.min.js',
     '@public/assets/node_modules/moment/min/moment.min.js',
     '@public/assets/node_modules/twig/twig.min.js',
     '@public/assets/js/slimwp.js'

@@ -70,4 +70,23 @@ class Slimwp extends AbstractTwigController
                   ->withHeader('Content-Type', 'application/json')
                   ->withStatus(200);
     }
+
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param array    $args
+     *
+     * @return Response
+     */
+    public function ajax_modal_post_get(Request $request, Response $response, array $args = []): Response
+    {
+        $slug = $args['slug'];
+        $wpapi = new WpApi($this->settings);
+        $article = $wpapi->getSinglePost($slug)[0];
+
+        return $this->render($response, 'Core/Views/templates/partials/modals/post.twig', [
+            'pageTitle' => 'Home',
+            'article' => $article
+        ]);
+    }
 }

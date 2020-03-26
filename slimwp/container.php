@@ -1,9 +1,7 @@
 <?php
 
 use DI\Container;
-// use Slimwp\Core\Classes\Auth\Auth;
 use Slimwp\Core\Middleware\TranslatorMiddleware;
-use Slimwp\Stor\Classes\Stor as StorMainClass;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
@@ -36,23 +34,6 @@ $container->set(LoggerInterface::class, function (Container $c) {
     $logger->pushHandler($handler);
     return $logger;
 });
-
-/*
-$container->set('mysqli', function (Container $c) {
-    $db = $c->get('settings')['db'];
-    $mysqli = new mysqli($db['host'], $db['username'], $db['password'], $db['database']);
-    $mysqli->set_charset($db['charset']);
-    $mysqli->query("SET collation_connection = ".$db['collation']);
-    return $mysqli;
-});
-
-
-$container->set('db', function (Container $c) {
-    $mysqli = $c->get('mysqli');
-    $db = new \MysqliDb($mysqli);
-    return $db;
-});
-*/
 
 $container->set('antixss', function () {
     return new AntiXSS();
@@ -111,23 +92,3 @@ $container->set(TranslatorMiddleware::class, static function (Container $contain
 $container->set('validator', function (Container $c) {
    return new Slimwp\Core\Classes\Validation\Validator;
 });
-
-/*
-$container->set('auth', function (Container $c) {
-    return new Auth($c->get('db'), $c->get('settings'));
-});
-*/
-
-// stor trida
-$container->set('stor', function (Container $c) {
-    return new StorMainClass($c->get('db'));
-});
-
-
-// TODO 
-// - classes/users.php
-// - sjednotit namespace, ted mam app jako Slimwp/core
-//   v users.php bylo Slimwp/core/classes ...
-// - pouzit v accountscontrolleru na vypis 1 uzivatele
-// - je na to preduelany twig, asi nehotovy accounts.twig
-//   do ktereho v accountscontroleru passujeme obsah $users

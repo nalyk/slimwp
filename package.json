@@ -5,8 +5,10 @@
   },
   "dependencies": {
     "bootstrap": "latest",
+    "bootstrap-modal-wrapper": "^2.0.1",
     "jquery": "latest",
     "moment": "latest",
+    "placeholder-loading": "^0.2.5",
     "popper.js": "^1.16.1",
     "twig": "latest"
   },
