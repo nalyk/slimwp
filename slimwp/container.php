@@ -20,6 +20,8 @@ use Symfony\Component\Translation\Loader\MoFileLoader;
 use Symfony\Component\Translation\Translator;
 use Twig\Loader\FilesystemLoader;
 use voku\helper\AntiXSS;
+use Phpfastcache\CacheManager;
+use Phpfastcache\Drivers\Redis\Config;
 
 $container->set('settings', function() {
     return require_once(__ROOT__ . '/slimwp/settings.php');
@@ -91,4 +93,12 @@ $container->set(TranslatorMiddleware::class, static function (Container $contain
 // via session to the original form upon failure)
 $container->set('validator', function (Container $c) {
    return new Slimwp\Core\Classes\Validation\Validator;
+});
+
+$container->set('redis', function (Container $c) {
+    $InstanceCache = CacheManager::getInstance('redis', new Config([
+      'host' => '127.0.0.1', //Default value
+      'port' => 6379
+    ]));
+   return $InstanceCache;
 });

@@ -20,8 +20,9 @@ class Slimwp extends AbstractTwigController
      */
     public function index(Request $request, Response $response, array $args = []): Response
     {
-        $wpapi = new WpApi($this->settings);
-        $lastposts = $wpapi->getLastPosts(1);
+        $wpapi = new WpApi($this->settings, $this->redis);
+        //$lastposts = $wpapi->getLastPosts(1, true);
+        $lastposts = $wpapi->getObjects('posts', 1, true);
 
         return $this->render($response, 'Core/Views/home.twig', [
             'pageTitle' => 'Home',
@@ -39,9 +40,9 @@ class Slimwp extends AbstractTwigController
     public function post_get(Request $request, Response $response, array $args = []): Response
     {
         $slug = $args['slug'];
-        $wpapi = new WpApi($this->settings);
-        $lastposts = $wpapi->getLastPosts(1);
-        $article = $wpapi->getSinglePost($slug)[0];
+        $wpapi = new WpApi($this->settings, $this->redis);
+        $lastposts = $wpapi->getObjects('posts', 1, true);
+        $article = $wpapi->getObject('posts', $slug, true);
 
         return $this->render($response, 'Core/Views/post.twig', [
             'pageTitle' => 'Home',
@@ -60,8 +61,8 @@ class Slimwp extends AbstractTwigController
     public function ajax_post_get(Request $request, Response $response, array $args = []): Response
     {
         $slug = $args['slug'];
-        $wpapi = new WpApi($this->settings);
-        $article = $wpapi->getSinglePost($slug)[0];
+        $wpapi = new WpApi($this->settings, $this->redis);
+        $article = $wpapi->getObject('posts', $slug, true);
 
         $payload = json_encode($article);
 
@@ -81,7 +82,7 @@ class Slimwp extends AbstractTwigController
     public function ajax_modal_post_get(Request $request, Response $response, array $args = []): Response
     {
         $slug = $args['slug'];
-        $wpapi = new WpApi($this->settings);
+        $wpapi = new WpApi($this->settings, $this->redis);
         $article = $wpapi->getSinglePost($slug)[0];
 
         return $this->render($response, 'Core/Views/templates/partials/modals/post.twig', [

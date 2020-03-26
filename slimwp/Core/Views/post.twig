@@ -1,5 +1,13 @@
 {% extends '/Core/Views/templates/default.twig' %}
 
+{% block css_inline_header %}
+<style type="text/css">
+  .modal-body img {
+    max-width: 766px;
+  }
+</style>  
+{% endblock %}
+
 {% block content %}
 <div class="container">
     <div class="row">
@@ -61,7 +69,7 @@
         $( "a.modalnews" ).click(function( event ) {
             event.preventDefault();
             var articleSlug = $(this).attr("data-slug");
-            var articleAjaxUrl = "http://127.0.0.1/ajax/post/"+articleSlug;
+            var articleAjaxUrl = "{{ base_path() }}/data/post/"+articleSlug;
             
             $.ajax({
                url: articleAjaxUrl,

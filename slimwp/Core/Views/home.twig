@@ -68,7 +68,7 @@
         $( "a.modalnews" ).click(function( event ) {
             event.preventDefault();
             var articleSlug = $(this).attr("data-slug");
-            var articleAjaxUrl = "{{ base_path() }}/ajax/post/"+articleSlug; 
+            var articleAjaxUrl = "{{ base_path() }}/data/post/"+articleSlug; 
             
             $.ajax({
                url: articleAjaxUrl,
